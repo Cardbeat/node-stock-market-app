@@ -5,10 +5,17 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-watch": "vue-cli-service build-watch",
+    "production": "node app.js"
   },
   "dependencies": {
-    "vue": "^2.5.17"
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.14",
+    "vue": "^2.5.17",
+    "vue-socket.io": "^3.0.4"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.2.0",
@@ -18,7 +25,9 @@
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0-0",
     "node-sass": "^4.9.0",
+    "nodemon": "^1.18.7",
     "sass-loader": "^7.0.1",
+    "vue-cli-plugin-build-watch": "^1.0.0",
     "vue-template-compiler": "^2.5.17"
   }
 }
