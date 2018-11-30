@@ -15,6 +15,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "mongoose": "^5.3.14",
+    "socket.io": "^2.2.0",
     "vue": "^2.5.17",
     "vue-chartjs": "^3.4.0",
     "vue-socket.io": "^3.0.4",
