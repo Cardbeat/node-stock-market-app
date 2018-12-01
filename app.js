@@ -15,7 +15,7 @@ const server = app.listen( port,  ()=>{
 const io = socket(server)
 
 mongoose.connect("mongodb://stock-market:stock351@ds119394.mlab.com:19394/stock-market").then(
-          () => {console.log('Database connection is successful') },
+          () => {console.log('Database connection is successful ') },
           err => { console.log('Error when connecting to the database'+ err)}
 );
 app.use(express.static('dist'));
