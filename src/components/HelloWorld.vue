@@ -8,7 +8,8 @@
 <script>
   import LineChart from './LineChart.js'
 
-  // need to handle API to create an object to send to server [ input to go DB ] and then get the API 
+  // need to handle API to create an object to send to server [ input to go to websocket ] and then get the API 
+  // https://github.com/bilalq/iex-api stock package 
 
   export default {
     components: {
