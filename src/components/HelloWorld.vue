@@ -7,9 +7,12 @@
 
 <script>
   import LineChart from './LineChart.js'
+  import { IEXClient } from 'iex-api'
+  import axios from 'axios'
 
   // need to handle API to create an object to send to server [ input to go to websocket ] and then get the API 
-  // https://github.com/bilalq/iex-api stock package 
+  // input to re-render
+  // you need to make a 'loading' component to render all the data
 
   export default {
     components: {
@@ -17,7 +20,8 @@
     },
     data () {
       return {
-        datacollection: null
+        datacollection: null,
+        stock: []
       }
     },
     mounted () {
@@ -25,13 +29,20 @@
     },
     methods: {
       fillData () {
+         axios.get('https://api.iextrading.com/1.0/stock/tsla/chart/1y')
+          .then(response => {
+            console.log(response.data)
+              response.data.map( item => {
+                this.stock.push(item.open)
+              })
+        } )
         this.datacollection = {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Setember', 'October', 'November', 'December'],
           datasets: [
             {
-              label: 'Data One',
-              backgroundColor: '#f87979',
-              data: [40, 39, 10, 40, 39, 80, 40, 10, 40, 39, 80, 40]
+              label: 'tesla',
+              borderColor: '#249EBF',
+              data: this.stock
             }, {
               label: 'Data Two',
               backgroundColor: '#05CBE1',
@@ -39,9 +50,6 @@
             }
           ]
         }
-      },
-      getRandomInt () {
-        return Math.floor(Math.random() * (50 - 5 + 1)) + 5
       }
     }
   }

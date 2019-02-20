@@ -10,10 +10,12 @@
     "production": "node app.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "chart.js": "^2.7.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "iex-api": "0.0.3",
     "mongoose": "^5.3.14",
     "socket.io": "^2.2.0",
     "vue": "^2.5.17",
