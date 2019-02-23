@@ -10,12 +10,7 @@
 
 <script>
   import LineChart from './LineChart.js'
-  import { IEXClient } from 'iex-api'
   import axios from 'axios'
-
-  // need to handle API to create an object to send to server [ input to go to websocket ] and then get the API 
-  // input to re-render
-  // you need to make a 'loading' component to render all the data
 
   export default {
     components: {
@@ -24,7 +19,7 @@
     data () {
       return {
         datacollection: null,
-        stock: 'tsla',
+        stock: [ 'aapl'],
       }
     },
     mounted () {
@@ -32,34 +27,65 @@
     },
     methods: {
       fillData (stock = this.stock) {
-        let stockData = []
-         axios.get(`https://api.iextrading.com/1.0/stock/${stock}/chart/1y`)
-          .then(response => {
-            console.log(response)
+        let store = []
+        let company = []
+        this.stock.map( name => {
+          axios.get(`https://api.iextrading.com/1.0/stock/${name}/chart/1y`)
+            .then(response => {
+              company = {
+                name: name,
+                data: []
+              }
               response.data.map( item => {
-                 stockData.push(item.open)
-                 this.showData(stockData)
+                company.data.push(item.open)
+
               })
-        } )
+            })
+            .then( () => {
+              store.push(company)
+              this.showData(store)
+            })
+        })
       },
       showData(data) {
-        // get all the data inside here and push to datasets inside objects
+
+        console.log(data)
+        let chartSet =[]
+        data.map( company => {
+          chartSet.push({
+              label: company.name,
+              borderColor: this.getRandomColor(),
+              backgroundColor: 'transparent',
+              data: company.data
+          })
+        })
+
 
         this.datacollection = {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'Setember', 'October', 'November', 'December'],
-          datasets: [
-            {
-              label: this.stock,
-              borderColor: '#249EBF',
-              data: data
-            },
-          ]
+          datasets: chartSet
         }
+      
+      
       },
       getFormValues (submitEvent) {
-        this.stock = submitEvent.target.elements.name.value
-        this.fillData()
-      }
+        let word = submitEvent.target.elements.name.value
+        this.stock.map(item => {
+          this.stock.includes(word) ? alert('Company already on chart!') : this.stock = [...this.stock, word]
+          submitEvent.target.elements.name.value = ''
+          this.fillData()
+
+        })
+      },
+      getRandomColor() {
+        const letters = '0123456789ABCDEF';
+        let color = '#';
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        console.log(color)
+        return color;
+}
     }
   }
 </script>
