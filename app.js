@@ -33,5 +33,7 @@ io.on('connection', client => {
     console.log('websocket connected')
   });
 
+  // need to learn about vue to pass data back and forth 
+
   // need to get my input, store at mongoDB, get data from API and send back to client 
 
