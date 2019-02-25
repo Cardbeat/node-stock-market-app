@@ -30,10 +30,8 @@ app.get('/', (req,res) => {
 })
 
 io.on('connection', client => {
-    console.log('websocket connected')
+    client.on('companies', data => {
+        io.sockets.emit('companies', data)
+    })
   });
-
-  // need to learn about vue to pass data back and forth 
-
-  // need to get my input, store at mongoDB, get data from API and send back to client 
 

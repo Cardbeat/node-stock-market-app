@@ -25,8 +25,17 @@
     mounted () {
       this.fillData()
     },
+    sockets: {
+      connect() {
+        console.log('socket client connected')
+      },
+      companies(data) {
+        this.stock = data
+        this.fillData()
+      }
+    },
     methods: {
-      fillData (stock = this.stock) {
+      fillData () {
         let store = []
         let company = []
         this.stock.map( name => {
@@ -69,11 +78,17 @@
       
       },
       getFormValues (submitEvent) {
+        submitEvent.preventDefault()
         let word = submitEvent.target.elements.name.value
-        this.stock.map(item => {
-          this.stock.includes(word) ? alert('Company already on chart!') : this.stock = [...this.stock, word]
-          submitEvent.target.elements.name.value = ''
-          this.fillData()
+        this.stock.map(() => {
+          if(this.stock.includes(word)) {
+            alert('Company already on chart!')
+          } else {
+            this.stock = [...this.stock, word]
+            submitEvent.target.elements.name.value = ''
+            this.fillData()
+            this.$socket.emit('companies', this.stock)
+          }
 
         })
       },
