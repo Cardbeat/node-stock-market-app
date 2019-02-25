@@ -1,16 +1,16 @@
 <template>
     <v-content>
-      <HelloWorld/>
+      <stockChart/>
     </v-content>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import stockChart from './components/stockChart'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    stockChart
   },
   data () {
     return {
