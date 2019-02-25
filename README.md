@@ -1,29 +1,16 @@
 # stock-market-app
 
-## Project setup
+## Free Code Camp Project setup
 ```
 npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm start
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### Demo Live
 
-### Run your tests
-```
-npm run test
-```
+https://node-stock-market-vue.herokuapp.com/
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
