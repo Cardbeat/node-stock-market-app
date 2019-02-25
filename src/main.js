@@ -6,7 +6,7 @@ import VueSocketIO from 'vue-socket.io'
 
 Vue.use(new VueSocketIO({
   debug: true,
-  connection: 'localhost:3000' // future hostname too  stock-market-js.com
+  connection: 'https://node-stock-market-vue.herokuapp.com/' // future hostname too  stock-market-js.com
 }))
 
 Vue.config.productionTip = false
